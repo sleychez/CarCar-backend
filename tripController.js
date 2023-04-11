@@ -27,10 +27,11 @@ class tripController {
 async get (req, res) {
     try {
        const {from, to} = req.query
-        console.log(req.params)
-        const search = await Trip.find({from, to})
+        const search = await Trip.find({from, to}).populate('user').exec()
         if (search) {
-            return res.json(search)
+            return res.json(search.filter(trip => {
+                return req.userId !== trip.user.id
+            } ))
         }
         return []
     } catch (e) {

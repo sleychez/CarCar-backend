@@ -1,6 +1,6 @@
 const Router = require('express')
 const router = new Router()
-const controller = require('./tripController')
+const controller = require('./BookingTripController')
 const {check} = require("express-validator")
 const authMiddleware = require('./middlewaree/authMiddleware')
 const roleMiddleware = require('./middlewaree/roleMiddleware')
@@ -30,8 +30,8 @@ const checkAuth = (req, res, next) => {
 
 
 
-router.post('/createTrip', checkAuth, controller.create)
-router.get('/getTrips', checkAuth, controller.get)
+router.post('/book', checkAuth, controller.book)
+router.get('/getbookings', checkAuth, controller.get)
 router.delete('/deleteTrip', checkAuth, controller.remove)
 router.patch('/updateTrip', checkAuth, controller.update)
 

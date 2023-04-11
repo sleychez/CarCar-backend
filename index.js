@@ -5,12 +5,14 @@ const authRouter = require('./authRouter')
 const app =express()
 const cors = require('cors')
 const tripsRouter = require('./tripRouter')
+const BookingTripRouter = require('./BookingTripRouter')
 
 app.use(cors())
 
 app.use(express.json())
 app.use("/auth", authRouter)
 app.use("/trips", tripsRouter)
+app.use('/booking', BookingTripRouter)
 
 const start = async () => {
     try{
