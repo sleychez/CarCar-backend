@@ -66,7 +66,7 @@ async get (req, res) {
             res.status(500).json({message: 'Не удалось удалить поездку'})
         }
     }
-    async update (req,res) {
+    async update (req, res) {
         try {
             const tripId = req.params.id
             await Trip.updateOne(

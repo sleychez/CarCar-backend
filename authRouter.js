@@ -5,15 +5,16 @@ const {check} = require("express-validator")
 const authMiddleware = require('./middlewaree/authMiddleware')
 const roleMiddleware = require('./middlewaree/roleMiddleware')
 const jwt = require("jsonwebtoken");
+const {secret} = require("./config");
 
 const checkAuth = (req, res, next) => {
     const token = (req.headers.authorization || '').replace(/Bearer\s?/, '')
-
     if (token) {
         try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            const decoded = jwt.verify(token, secret)
 
             req.userId = decoded.id
+
 
             next()
         } catch (error) {
