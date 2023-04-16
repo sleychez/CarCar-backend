@@ -37,5 +37,7 @@ router.post('/register',[
 router.post('/login', controller.login)
 router.get('/users', roleMiddleware(['ADMIN']), controller.getUsers)
 router.get('/me', checkAuth, controller.getMe)
+router.post('/forget-password', controller.forgetPassword)
+router.post('/reset-password', controller.resetPassword)
 
 module.exports = router
