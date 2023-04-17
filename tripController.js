@@ -39,7 +39,7 @@ async get (req, res) {
         res.status(500).json({message: 'Не удалось получить поездки'})
     }
 }
-    async remove (req,res) {
+    async remove (req, res) {
         try {
             const tripId = req.params.id
             Trip.findOneAndDelete({

@@ -16,10 +16,13 @@ const generateAccessToken = (id, roles) => {
 const transporter = nodemailer.createTransport({
     host: "smtp.yandex.ru",
     port: 465,
-    secure: true, // true for 465, false for other ports
+    secure: true,
     auth: {
-        user: "sokova.lana", // generated ethereal user
-        pass: "zawqgsmopmemfpvj" // generated ethereal password
+        user: "sokova.lana",
+        pass: "zawqgsmopmemfpvj"
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
@@ -57,7 +60,7 @@ class authController {
             }
             const validPassword = bcrypt.compareSync(password, user.password)
             if (!validPassword) {
-                return res.status(400).json({message: `Введен не верный пароль`})
+                return res.status(400).json({message: `Введен неверный пароль`})
             }
             const token = generateAccessToken(user._id, user.roles)
             return res.json({token})
