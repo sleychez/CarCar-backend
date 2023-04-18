@@ -6,6 +6,6 @@ const User = new Schema({
     roles: [{type:String,ref: 'Role'}],
     email: {type:String, unique: true, required: true},
     resetToken: {type:String},
-    car: {type: String}
+    car:{type: String}
 })
 module.exports = model('User',User)

@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 const {validationResult} = require('express-validator')
 const {secret} = require("./config")
 const nodemailer = require("nodemailer");
+const Trip = require("./models/Trip");
 
 const generateAccessToken = (id, roles) => {
     const payload = {
@@ -98,6 +99,26 @@ class authController {
             })
         } catch (error) {
             res.json({message: 'Нет доступа.'})
+        }
+    }
+
+    async setCar (req, res) {
+        try {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                return res.status(400).json({message: "Не удалось задать машину", errors})
+            }
+            const {car} = req.body
+            const userId = req.userId
+            await User.updateOne ({
+                _id: userId,
+            },
+                {car}
+            );
+            res.json({success: true})
+        } catch (e) {
+            console.log(e)
+            res.status(400).json({message: 'Не удалось задать машину'})
         }
     }
 

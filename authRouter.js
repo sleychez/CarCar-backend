@@ -38,5 +38,6 @@ router.get('/users', roleMiddleware(['ADMIN']), controller.getUsers)
 router.get('/me', checkAuth, controller.getMe)
 router.post('/forget-password', controller.forgetPassword)
 router.post('/reset-password', controller.resetPassword)
+router.post('/car', checkAuth, controller.setCar)
 
 module.exports = router
