@@ -74,29 +74,7 @@ class BookingTripController {
             res.status(500).json({message: 'Не удалось удалить поездку'})
         }
     }
-    async update (req,res) {
-        try {
-            const tripId = req.params.id
-            await Trip.updateOne(
-                {
-                    _id: tripId,
-                },
-                {
-                    from: req.body.from,
-                    to: req.body.to,
-                    cost: req.body.cost,
-                    user: req.userId
-                }
-            );
-            res.json({
-                success: true
-            })
 
-        } catch (e) {
-            console.log(e)
-            res.status(500).json({message: 'Не удалось обновить поездку'})
-        }
-    }
 
 
 }
