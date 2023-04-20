@@ -48,7 +48,7 @@ class authController {
             return res.json({message: "Пользователь успешно зарегистрирован", token})
         } catch (e) {
             console.log(e)
-            res.status(400).json({message: 'Registration error'})
+            res.status(400).json({message: 'Ошибка при регистрации'})
         }
     }
 
@@ -67,7 +67,7 @@ class authController {
             return res.json({token})
         } catch (e) {
             console.log(e)
-            res.status(400).json({message: 'Login error'})
+            res.status(400).json({message: 'Не удалось войти'})
         }
     }
 
@@ -136,10 +136,10 @@ class authController {
             console.log(`http://localhost:3000/reset-password/${token}`);
 
             await transporter.sendMail({
-                from: '"Fred Foo 👻" <sokova.lana@yandex.ru>', // sender address
-                to: user.email, // list of receivers
-                subject: "Reset password", // Subject line
-                html: `<a href='http://localhost:3000/reset-password/${token}'>http://localhost:3000/reset-password/${token}</a>`, // html body
+                from: '"Fred Foo 👻" <sokova.lana@yandex.ru>',
+                to: user.email,
+                subject: "Reset password",
+                html: `<a href='http://localhost:3000/reset-password/${token}'>http://localhost:3000/reset-password/${token}</a>`,
             })
         } else {
             res.status(404).send({message: 'Пользователь не найден'});

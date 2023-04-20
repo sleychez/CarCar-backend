@@ -32,7 +32,7 @@ const checkAuth = (req, res, next) => {
 
 router.post('/book', checkAuth, controller.book)
 router.get('/getBookings', checkAuth, controller.get)
-router.delete('/deleteTrip', checkAuth, controller.remove)
+router.delete('/deleteBookTrip/:id', checkAuth, controller.remove)
 
 
 module.exports = router

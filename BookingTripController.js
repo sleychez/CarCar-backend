@@ -20,7 +20,7 @@ class BookingTripController {
             const userId = req.userId
             const trip = new BookingTrip({trip: tripId, userId})
             await trip.save()
-            return res.json({trip})
+            return res.json({message: 'Поездка забронирована', trip})
         } catch (e) {
             console.log(e)
             res.status(400).json({message: 'Не удалось забронировать поездку'})
@@ -47,28 +47,17 @@ class BookingTripController {
             res.status(500).json({message: 'Не удалось получить поездки'})
         }
     }
-    async remove (req,res) {
+    async remove(req, res) {
         try {
             const tripId = req.params.id
-            Trip.findOneAndDelete({
-                    _id: tripId,
-                }, (e, trip) => {
-                    if (e) {
-                        console.log(e)
-                        return res.status(500).json({
-                            message: 'Не удалось удалить поездку'
-                        })
-                    }
-                    if (!trip) {
-                        return res.status(404).json({
-                            message: 'Поездка не найдена',
-                        })
-                    }
-                    res.json({
-                        success: true
-                    })
-                },
-            )
+            const userId = req.userId
+            await BookingTrip.findOneAndDelete({
+                trip: tripId,
+                userId,
+            })
+            return res.json({
+                success: true
+            })
         } catch (e) {
             console.log(e)
             res.status(500).json({message: 'Не удалось удалить поездку'})

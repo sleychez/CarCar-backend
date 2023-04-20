@@ -32,8 +32,9 @@ const checkAuth = (req, res, next) => {
 
 router.post('/createTrip', checkAuth, controller.create)
 router.get('/getTrips', checkAuth, controller.get)
-router.delete('/deleteTrip', checkAuth, controller.remove)
+router.delete('/deleteTrip/:id', checkAuth, controller.remove)
 router.patch('/updateTrip', checkAuth, controller.update)
+router.get('/createdTrips', checkAuth, controller.getCreatedTrip)
 
 
 module.exports = router
