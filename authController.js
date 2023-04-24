@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 const {validationResult} = require('express-validator')
 const {secret} = require("./config")
 const nodemailer = require("nodemailer");
-const Trip = require("./models/Trip");
 
 const generateAccessToken = (id, roles) => {
     const payload = {
@@ -132,6 +131,7 @@ class authController {
             user.resetToken = token;
             await user.save();
 
+
             //reset link
             console.log(`http://localhost:3000/reset-password/${token}`);
 
@@ -141,6 +141,8 @@ class authController {
                 subject: "Reset password",
                 html: `<a href='http://localhost:3000/reset-password/${token}'>http://localhost:3000/reset-password/${token}</a>`,
             })
+            return res.json({message: 'Ссылка для сброса пароля отправлена на почту'})
+
         } else {
             res.status(404).send({message: 'Пользователь не найден'});
         }
