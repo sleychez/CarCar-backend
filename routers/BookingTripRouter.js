@@ -1,11 +1,8 @@
 const Router = require('express')
 const router = new Router()
-const controller = require('./BookingTripController')
-const {check} = require("express-validator")
-const authMiddleware = require('./middlewaree/authMiddleware')
-const roleMiddleware = require('./middlewaree/roleMiddleware')
+const controller = require('../controllers/BookingTripController')
 const jwt = require("jsonwebtoken");
-const {secret} = require("./config")
+const {secret} = require("../config")
 
 
 const checkAuth = (req, res, next) => {

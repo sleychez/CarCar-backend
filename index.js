@@ -1,11 +1,11 @@
 const express = require('express')
 const PORT = process.env.PORT || 5000
 const mongoose = require('mongoose')
-const authRouter = require('./authRouter')
+const authRouter = require('./routers/authRouter')
 const app =express()
 const cors = require('cors')
-const tripsRouter = require('./tripRouter')
-const BookingTripRouter = require('./BookingTripRouter')
+const tripsRouter = require('./routers/tripRouter')
+const BookingTripRouter = require('./routers/BookingTripRouter')
 
 app.use(cors())
 

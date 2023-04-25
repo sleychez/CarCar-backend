@@ -1,9 +1,6 @@
-const Trip = require('./models/Trip')
-const Role = require('./models/Role')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const Trip = require('../models/Trip')
 const {validationResult} = require('express-validator')
-const {secret} = require("./config")
+
 
 
 class tripController {
